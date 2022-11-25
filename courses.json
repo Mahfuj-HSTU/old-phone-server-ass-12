@@ -1,14 +1,74 @@
 [
 	{
 		"name": "SamSung",
-		"img": "https://i.ibb.co/StGRKzC/download.png"
+		"img": "https://i.ibb.co/StGRKzC/download.png",
+		"products": [
+			{
+				"name": "Galaxy A04s",
+				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
+				"location": "Rangpur",
+				"resale_price": 12000,
+				"original_price": 22500,
+				"used_time": "1 year",
+				"sellers": "Mahfuj"
+			},
+			{
+				"name": "Galaxy A73 5G",
+				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
+				"location": "Dhaka",
+				"resale_price": 12000,
+				"original_price": 32500,
+				"used_time": "1.5 year",
+				"sellers": "Hridoy"
+			}
+		]
 	},
 	{
 		"name": "One Plus",
-		"img": "https://i.ibb.co/fkwt16r/oneplus.webp"
+		"img": "https://i.ibb.co/fkwt16r/oneplus.webp",
+		"products": [
+			{
+				"name": "Galaxy A04s",
+				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
+				"location": "Rangpur",
+				"resale_price": 12000,
+				"original_price": 22500,
+				"used_time": "1 year",
+				"sellers": "Mahfuj"
+			},
+			{
+				"name": "Galaxy A73 5G",
+				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
+				"location": "Dhaka",
+				"resale_price": 12000,
+				"original_price": 32500,
+				"used_time": "1.5 year",
+				"sellers": "Mehedi"
+			}
+		]
 	},
 	{
 		"name": "iPhone",
-		"img": "https://i.ibb.co/MMNFhGb/samsung.jpg"
+		"img": "https://i.ibb.co/MMNFhGb/samsung.jpg",
+		"products": [
+			{
+				"name": "Galaxy A04s",
+				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
+				"location": "Rangpur",
+				"resale_price": 12000,
+				"original_price": 22500,
+				"used_time": "1 year",
+				"sellers": "Hridoy"
+			},
+			{
+				"name": "Galaxy A73 5G",
+				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
+				"location": "Dhaka",
+				"resale_price": 12000,
+				"original_price": 32500,
+				"used_time": "1.5 year",
+				"sellers": "Mahfuj"
+			}
+		]
 	}
 ]
