@@ -23,6 +23,7 @@ async function run () {
     try {
         const categoryCollection = client.db( 'SuperSale' ).collection( 'Categories' )
         const productCollection = client.db( 'SuperSale' ).collection( 'products' )
+        const ordersCollection = client.db( 'SuperSale' ).collection( 'orders' )
 
         // get categories
         app.get( '/categories', async ( req, res ) => {
@@ -75,6 +76,17 @@ async function run () {
             const result = await productCollection.deleteOne( query );
             res.send( result )
             console.log( result );
+        } )
+
+        // my orders
+        app.post( '/orders', async ( req, res ) => {
+            const order = req.body;
+            // console.log( order )
+            // const query = {
+            //     email: booking.email,
+            // }
+            const result = await ordersCollection.insertOne( order );
+            res.send( result )
         } )
 
     }
