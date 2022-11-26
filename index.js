@@ -1,6 +1,7 @@
 const express = require( 'express' )
 const app = express();
 const cors = require( 'cors' );
+const jwt = require( 'jsonwebtoken' )
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require( 'mongodb' );
 require( 'dotenv' ).config();
@@ -17,6 +18,23 @@ const uri = `mongodb+srv://${ process.env.DB_user }:${ process.env.DB_password }
 // console.log( uri );
 const client = new MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 } );
 
+function verifyJWT ( req, res, next ) {
+    // console.log( 'token inside', req.headers.authorization )
+    const authHeader = req.headers.authorization
+    if ( !authHeader ) {
+        return res.status( 401 ).send( 'unauthorized access' )
+    }
+    const token = authHeader.split( ' ' )[ 1 ];
+
+    jwt.verify( token, process.env.ACCESS_token, function ( err, decoded ) {
+        if ( err ) {
+            return res.status( 403 ).send( { message: 'forbidden access' } )
+        }
+        req.decoded = decoded;
+        next();
+    } )
+}
+
 
 
 async function run () {
@@ -24,6 +42,8 @@ async function run () {
         const categoryCollection = client.db( 'SuperSale' ).collection( 'Categories' )
         const productCollection = client.db( 'SuperSale' ).collection( 'products' )
         const ordersCollection = client.db( 'SuperSale' ).collection( 'orders' )
+        const usersCollection = client.db( 'SuperSale' ).collection( 'users' )
+
 
         // get categories
         app.get( '/categories', async ( req, res ) => {
@@ -32,14 +52,6 @@ async function run () {
             const category = await cursor.toArray();
             res.send( category );
         } );
-
-        // get products under category
-        // app.get( '/categories/:id', async ( req, res ) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId( id ) };
-        //     const service = await categoryCollection.find( query ).toArray()
-        //     res.send( service )
-        // } );
 
         app.get( '/products/:brand', async ( req, res ) => {
             const brand = req.params.brand;
@@ -95,6 +107,25 @@ async function run () {
             const query = { email: email };
             const orders = await ordersCollection.find( query ).toArray();
             res.send( orders )
+        } )
+
+        // post users
+        app.get( '/jwt', async ( req, res ) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const user = await usersCollection.findOne( query );
+            if ( user ) {
+                const token = jwt.sign( { email }, process.env.ACCESS_token, { expiresIn: '1d' } )
+                return res.send( { accessToken: token } )
+            }
+            // console.log( user );
+            res.status( 403 ).send( { accessToken: '' } )
+        } )
+
+        app.post( '/users', async ( req, res ) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne( user );
+            res.send( result )
         } )
 
     }
