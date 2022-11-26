@@ -78,7 +78,7 @@ async function run () {
             console.log( result );
         } )
 
-        // my orders
+        // post orders
         app.post( '/orders', async ( req, res ) => {
             const order = req.body;
             // console.log( order )
@@ -87,6 +87,14 @@ async function run () {
             // }
             const result = await ordersCollection.insertOne( order );
             res.send( result )
+        } )
+
+        // get my orders
+        app.get( '/orders', async ( req, res ) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const orders = await ordersCollection.find( query ).toArray();
+            res.send( orders )
         } )
 
     }
