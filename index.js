@@ -22,6 +22,7 @@ const client = new MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology
 async function run () {
     try {
         const categoryCollection = client.db( 'SuperSale' ).collection( 'Categories' )
+        const productCollection = client.db( 'SuperSale' ).collection( 'products' )
 
         // get categories
         app.get( '/categories', async ( req, res ) => {
@@ -32,12 +33,21 @@ async function run () {
         } );
 
         // get products under category
-        app.get( '/categories/:id', async ( req, res ) => {
-            const id = req.params.id;
-            const query = { _id: ObjectId( id ) };
-            const service = await categoryCollection.find( query ).toArray()
-            res.send( service )
+        // app.get( '/categories/:id', async ( req, res ) => {
+        //     const id = req.params.id;
+        //     const query = { _id: ObjectId( id ) };
+        //     const service = await categoryCollection.find( query ).toArray()
+        //     res.send( service )
+        // } );
+
+        app.get( '/products/:brand', async ( req, res ) => {
+            const brand = req.params.brand;
+            const query = { brand: brand };
+            // console.log( query )
+            const result = await productCollection.find( query ).toArray();
+            res.send( result )
         } );
+
 
     }
     finally {

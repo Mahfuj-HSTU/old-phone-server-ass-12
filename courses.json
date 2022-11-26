@@ -1,74 +1,75 @@
 [
 	{
 		"name": "SamSung",
-		"img": "https://i.ibb.co/StGRKzC/download.png",
-		"products": [
-			{
-				"name": "Galaxy A04s",
-				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
-				"location": "Rangpur",
-				"resale_price": 12000,
-				"original_price": 22500,
-				"used_time": "1 year",
-				"sellers": "Mahfuj"
-			},
-			{
-				"name": "Galaxy A73 5G",
-				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
-				"location": "Dhaka",
-				"resale_price": 12000,
-				"original_price": 32500,
-				"used_time": "1.5 year",
-				"sellers": "Hridoy"
-			}
-		]
-	},
+		"img": "https://i.ibb.co/MMNFhGb/samsung.jpg"	},
 	{
 		"name": "One Plus",
-		"img": "https://i.ibb.co/fkwt16r/oneplus.webp",
-		"products": [
+		"img": "https://i.ibb.co/fkwt16r/oneplus.webp"	},
+	{
+		"name": "iPhone",
+		"img": "https://i.ibb.co/StGRKzC/download.png"	}
+]
+
+
+[
 			{
 				"name": "Galaxy A04s",
+				"id": 1,
 				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
 				"location": "Rangpur",
-				"resale_price": 12000,
-				"original_price": 22500,
+				"resale_price": 120,
+				"original_price": 225,
 				"used_time": "1 year",
 				"sellers": "Mahfuj"
 			},
 			{
 				"name": "Galaxy A73 5G",
+				"id": 1,
 				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
 				"location": "Dhaka",
-				"resale_price": 12000,
-				"original_price": 32500,
+				"resale_price": 150,
+				"original_price": 325,
+				"used_time": "1.5 year",
+				"sellers": "Hridoy"
+			},
+			{
+				"name": "Nord N300",
+				"id": 2,
+				"img": "https://i.ibb.co/6JxSbJs/oneplus-nord-n300-5g.jpg",
+				"location": "Rangpur",
+				"resale_price": 200,
+				"original_price": 500,
+				"used_time": "1 year",
+				"sellers": "Mahfuj"
+			},
+			{
+				"name": "Ace Racing",
+				"id": 2,
+				"img": "https://i.ibb.co/F73P89Q/oneplus-ace-race.jpg",
+				"location": "Dhaka",
+				"resale_price": 250,
+				"original_price": 320,
 				"used_time": "1.5 year",
 				"sellers": "Mehedi"
-			}
-		]
-	},
-	{
-		"name": "iPhone",
-		"img": "https://i.ibb.co/MMNFhGb/samsung.jpg",
-		"products": [
+			},
 			{
-				"name": "Galaxy A04s",
-				"img": "https://i.ibb.co/tQzmkPc/bd-galaxy-a04s-a047-sm-a047fzkgbkd-thumb-533980431-160-160-PNG.png",
+				"name": "iPhone 14plus",
+				"id": 3,
+				"img": "https://i.ibb.co/G73CcdZ/apple-iphone-14-plus.jpg",
 				"location": "Rangpur",
-				"resale_price": 12000,
-				"original_price": 22500,
+				"resale_price": 500,
+				"original_price": 1220,
 				"used_time": "1 year",
 				"sellers": "Hridoy"
 			},
 			{
-				"name": "Galaxy A73 5G",
-				"img": "https://i.ibb.co/99p8r6q/bd-galaxy-a73-5g-a736-sm-a736bzwhbkd-thumb-532295530-160-160-PNG.png",
+				"name": "iPhone 14",
+				"id": 3,
+				"img": "https://i.ibb.co/1vqF3Z1/apple-iphone-14.jpg",
 				"location": "Dhaka",
-				"resale_price": 12000,
-				"original_price": 32500,
+				"resale_price": 400,
+				"original_price": 1100,
 				"used_time": "1.5 year",
 				"sellers": "Mahfuj"
 			}
 		]
-	}
-]
