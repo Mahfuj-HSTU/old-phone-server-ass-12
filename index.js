@@ -48,7 +48,7 @@ async function run () {
         // admin middleware
         const verifyAdmin = async ( req, res, next ) => {
             const decodedEmail = req.decoded.email;
-            console.log( decodedEmail );
+            // console.log( decodedEmail );
             const query = { email: decodedEmail }
             const user = await usersCollection.findOne( query );
             if ( user?.role !== 'admin' ) {
