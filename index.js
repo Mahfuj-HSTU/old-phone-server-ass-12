@@ -113,7 +113,7 @@ async function run () {
         // get buyers
         app.get( '/users/buyers/:role', async ( req, res ) => {
             const role = req.params.role
-            console.log( role )
+            // console.log( role )
             const query = { role: role }
             const user = await usersCollection.find( query ).toArray();
             res.send( user )
@@ -135,6 +135,24 @@ async function run () {
             // console.log( email );
             const user = await usersCollection.findOne( query )
             res.send( { isAdmin: user?.role === 'admin' } )
+        } )
+
+        // check buyer
+        app.get( '/users/buyer/:email', async ( req, res ) => {
+            const email = req.params.email
+            const query = { email }
+            // console.log( email );
+            const user = await usersCollection.findOne( query )
+            res.send( { isBuyer: user?.role === 'Buyer' } )
+        } )
+
+        // check seller
+        app.get( '/users/seller/:email', async ( req, res ) => {
+            const email = req.params.email
+            const query = { email }
+            // console.log( email );
+            const user = await usersCollection.findOne( query )
+            res.send( { isSeller: user?.role === 'Seller' } )
         } )
 
         // jwt token
