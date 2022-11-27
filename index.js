@@ -155,6 +155,23 @@ async function run () {
             res.send( { isSeller: user?.role === 'Seller' } )
         } )
 
+        // delete buyer
+        app.delete( '/users/buyer/:id', async ( req, res ) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId( id ) };
+            const result = await usersCollection.deleteOne( query );
+            res.send( result )
+        } )
+
+        // delete seller
+        app.delete( '/users/seller/:id', async ( req, res ) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId( id ) };
+            const result = await usersCollection.deleteOne( query );
+            res.send( result )
+        } )
+
+
         // jwt token
         app.get( '/jwt', async ( req, res ) => {
             const email = req.query.email;
