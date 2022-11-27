@@ -45,6 +45,19 @@ async function run () {
         const ordersCollection = client.db( 'SuperSale' ).collection( 'orders' )
         const usersCollection = client.db( 'SuperSale' ).collection( 'users' )
 
+        // admin middleware
+        const verifyAdmin = async ( req, res, next ) => {
+            const decodedEmail = req.decoded.email;
+            console.log( decodedEmail );
+            const query = { email: decodedEmail }
+            const user = await usersCollection.findOne( query );
+            if ( user?.role !== 'admin' ) {
+                return res.status( 403 ).send( { message: 'forbidden access' } )
+            }
+            next()
+        }
+
+
 
         // get categories
         app.get( '/categories', async ( req, res ) => {
@@ -94,10 +107,6 @@ async function run () {
         // post orders
         app.post( '/orders', async ( req, res ) => {
             const order = req.body;
-            // console.log( order )
-            // const query = {
-            //     email: booking.email,
-            // }
             const result = await ordersCollection.insertOne( order );
             res.send( result )
         } )
@@ -156,7 +165,7 @@ async function run () {
         } )
 
         // delete buyer
-        app.delete( '/users/buyer/:id', async ( req, res ) => {
+        app.delete( '/users/buyer/:id', verifyJWT, verifyAdmin, async ( req, res ) => {
             const id = req.params.id;
             const query = { _id: ObjectId( id ) };
             const result = await usersCollection.deleteOne( query );
@@ -164,7 +173,7 @@ async function run () {
         } )
 
         // delete seller
-        app.delete( '/users/seller/:id', async ( req, res ) => {
+        app.delete( '/users/seller/:id', verifyJWT, verifyAdmin, async ( req, res ) => {
             const id = req.params.id;
             const query = { _id: ObjectId( id ) };
             const result = await usersCollection.deleteOne( query );
