@@ -18,6 +18,7 @@ const uri = `mongodb+srv://${ process.env.DB_user }:${ process.env.DB_password }
 // console.log( uri );
 const client = new MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 } );
 
+// jwt function
 function verifyJWT ( req, res, next ) {
     // console.log( 'token inside', req.headers.authorization )
     const authHeader = req.headers.authorization
@@ -70,13 +71,13 @@ async function run () {
         } );
 
         // my product
-        app.get( '/products', async ( req, res ) => {
-            let query = {};
-            if ( req.query.email ) {
-                query = {
-                    email: req.query.email
-                }
+        app.get( '/products', verifyJWT, async ( req, res ) => {
+            const email = req.query.email
+            const decodedEmail = req.decoded.email;
+            if ( email !== decodedEmail ) {
+                return res.status( 403 ).send( { message: 'forbidden access' } )
             }
+            const query = { email: email }
             const product = await productCollection.find( query ).toArray();
             res.send( product )
         } )
@@ -109,7 +110,34 @@ async function run () {
             res.send( orders )
         } )
 
-        // post users
+        // get buyers
+        app.get( '/users/buyers/:role', async ( req, res ) => {
+            const role = req.params.role
+            console.log( role )
+            const query = { role: role }
+            const user = await usersCollection.find( query ).toArray();
+            res.send( user )
+        } )
+
+        // get sellers
+        app.get( '/users/sellers/:role', async ( req, res ) => {
+            const role = req.params.role
+            // console.log( role )
+            const query = { role: role }
+            const user = await usersCollection.find( query ).toArray();
+            res.send( user )
+        } )
+
+        // check admin
+        app.get( '/users/admin/:email', async ( req, res ) => {
+            const email = req.params.email
+            const query = { email }
+            // console.log( email );
+            const user = await usersCollection.findOne( query )
+            res.send( { isAdmin: user?.role === 'admin' } )
+        } )
+
+        // jwt token
         app.get( '/jwt', async ( req, res ) => {
             const email = req.query.email;
             const query = { email: email };
@@ -122,6 +150,7 @@ async function run () {
             res.status( 403 ).send( { accessToken: '' } )
         } )
 
+        // post users
         app.post( '/users', async ( req, res ) => {
             const user = req.body;
             const result = await usersCollection.insertOne( user );
